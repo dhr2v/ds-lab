@@ -38,19 +38,19 @@ int main ()  {
 
     for (int i = 0; i < n; i++) {
         if ((i + 1) % 10 == 1 && (i + 1) % 100 != 11) {
-            printf("Enter %dst number\n", (i + 1));
+            printf("Enter %dst number - ", (i + 1));
             scanf("%d", &arr[i]);
         }
         else if ((i + 1) % 10 == 2 && (i + 1) % 100 != 12) {
-            printf("Enter %dnd number\n", (i + 1));
+            printf("Enter %dnd number - ", (i + 1));
             scanf("%d", &arr[i]);
         }
         else if ((i + 1) % 10 == 3 && (i + 1) % 100 != 13) {
-            printf("Enter %drd number\n", (i + 1));
+            printf("Enter %drd number - ", (i + 1));
             scanf("%d", &arr[i]);
         } 
         else {
-            printf("Enter %dth number\n", (i + 1));
+            printf("Enter %dth number - ", (i + 1));
             scanf("%d", &arr[i]);
         }
     }
