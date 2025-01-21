@@ -28,13 +28,31 @@ int main ()  {
     int n;
     printf("Enter the size for the array.\n");
     scanf("%d", &n);
+    if (n > MAX_SIZE) {
+        printf("Array size cannot be greater than allowed size (%d)\n", MAX_SIZE);
+        n = MAX_SIZE;
+    } 
     printf("Creating an array of size %d\n", n);
 
     int arr[MAX_SIZE];
 
     for (int i = 0; i < n; i++) {
-        printf("Enter the number.\n");
-        scanf("%d", &arr[i]);
+        if ((i + 1) % 10 == 1 && (i + 1) % 100 != 11) {
+            printf("Enter %dst number\n", (i + 1));
+            scanf("%d", &arr[i]);
+        }
+        else if ((i + 1) % 10 == 2 && (i + 1) % 100 != 12) {
+            printf("Enter %dnd number\n", (i + 1));
+            scanf("%d", &arr[i]);
+        }
+        else if ((i + 1) % 10 == 3 && (i + 1) % 100 != 13) {
+            printf("Enter %drd number\n", (i + 1));
+            scanf("%d", &arr[i]);
+        } 
+        else {
+            printf("Enter %dth number\n", (i + 1));
+            scanf("%d", &arr[i]);
+        }
     }
 
     printf("Displaying array elements\n");
@@ -48,8 +66,8 @@ int main ()  {
     insert_at_end(arr, &n, 12);
     display_array(arr, n);
 
-    printf("Inserting 69 at the 4th position\n");
-    insert_at_pos(arr, &n, 69, 4);
+    printf("Inserting 48 at the 4th position\n");
+    insert_at_pos(arr, &n, 48, 4);
     display_array(arr, n);
 
     return 0;
@@ -73,22 +91,34 @@ void display_array(int* array, int size) {
 } 
 
 void insert_at_begin(int* array, int* size, int num) {
-   for (int i = *size - 1; i >= 0; i--) {
-        array[i + 1] = array[i];
-   } 
-   array[0] = num;
-   (*size)++;
+   if (*size >= MAX_SIZE) {
+        printf("Array is full.\n");
+   } else {
+       for (int i = *size - 1; i >= 0; i--) {
+            array[i + 1] = array[i];
+       } 
+       array[0] = num;
+        (*size)++;
+   }
 }
 
 void insert_at_end(int* array, int* size, int num) {
-   array[*size] = num; 
-   (*size)++;
+   if (*size >= MAX_SIZE) {
+        printf("Array is full.\n");
+   } else {
+       array[*size] = num; 
+       (*size)++;
+   }
 }
 
 void insert_at_pos(int* array, int* size, int num, int pos) {
-   for (int i = *size - 1; i >= pos; i--) {
-        array[i + 1] = array[i];
-   }     
-   array[pos - 1] = num;
-   (*size)++;
+   if (*size >= MAX_SIZE) {
+        printf("Array is full.\n");
+   } else {
+        for (int i = *size - 1; i >= pos; i--) {
+            array[i + 1] = array[i];
+       }     
+        array[pos - 1] = num;
+       (*size)++;
+   }
 }
