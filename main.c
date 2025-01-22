@@ -23,6 +23,10 @@ void display_array(int* array, int size);
 void insert_at_begin(int* array, int* size, int num);
 void insert_at_end(int* array, int* size, int num);
 void insert_at_pos(int* array, int* size, int num, int pos);
+// Delete Operations
+void delete_first(int* array, int* size);
+void delete_last(int* array, int* size);
+void delete_at_pos(int* array, int* size, int pos);
 
 int main ()  {
     int n;
