@@ -6,7 +6,7 @@
 //
 // [x] create an integer array of size n and display it take value of the n from the user also the element of the array
 // [x] insert an element into array at beginning, end and at specific position
-// [ ] perform delete operation first, last and at specific position
+// [x] perform delete operation first, last and at specific position
 // [ ] search an element in the array (linear search)
 // [ ] sorting
 // [ ] sort only array element only at index even
@@ -74,6 +74,17 @@ int main ()  {
     insert_at_pos(arr, &n, 48, 4);
     display_array(arr, n);
 
+    printf("Deleting first element\n");
+    delete_first(arr, &n);
+    display_array(arr, n);
+
+    printf("Deleting last element\n");
+    delete_last(arr, &n);
+    display_array(arr, n);
+
+    printf("Deleting element at 3rd position\n");
+    delete_at_pos(arr, &n, 3);
+    display_array(arr, n);
 
     return 0;
 }
@@ -131,5 +142,29 @@ void insert_at_pos(int* array, int* size, int num, int pos) {
     array[pos - 1] = num;
     (*size)++;
 }
+
+void delete_first(int* array, int* size) {
+    array[0] = (int)NULL;
+    for (int i = 0; i < *size; i++) {
+        array[i] = array[i + 1];
+    }
+    (*size)--;
+}
+
+void delete_last(int* array, int* size) {
+    array[*size - 1] = (int)NULL;
+    (*size)--;
+}
+
+void delete_at_pos(int* array, int* size, int pos) {
+   if (pos < 0 || pos > *size || pos > MAX_SIZE) {
+        printf("Enter a valid position.\n");
+        return;
+   } 
+
+   for (int i = pos - 1; i < *size; i++) {
+       array[i] = array[i + 1];
    }
+   array[*size - 1] = (int)NULL;
+   (*size)--;
 }
