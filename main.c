@@ -7,7 +7,7 @@
 // [x] create an integer array of size n and display it take value of the n from the user also the element of the array
 // [x] insert an element into array at beginning, end and at specific position
 // [x] perform delete operation first, last and at specific position
-// [ ] search an element in the array (linear search)
+// [x] search an element in the array (linear search)
 // [ ] sorting
 // [ ] sort only array element only at index even
 // [ ] sort only array element only at index odd
@@ -30,6 +30,9 @@ void delete_at_pos(int* array, int* size, int pos);
 
 // Linear Search
 void linear_search(int* array, int size, int num);
+
+// Sorting
+void bubble_sort(int* array, int size);
 
 int main ()  {
     int n;
@@ -91,6 +94,10 @@ int main ()  {
 
     printf("Finding 4 in the array\n");
     linear_search(arr, n, 4);
+
+    printf("Sorting the array using Bubble Sort\n");
+    bubble_sort(arr, n);
+    display_array(arr, n);
 
     return 0;
 }
@@ -183,4 +190,16 @@ void linear_search(int* array, int size, int num) {
         }
     }
     printf("Could not find %d in the array.\n");
+}
+
+void bubble_sort(int* array, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - 1 - i; j++) {
+            if (array[j] > array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
 }
