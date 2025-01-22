@@ -28,6 +28,9 @@ void delete_first(int* array, int* size);
 void delete_last(int* array, int* size);
 void delete_at_pos(int* array, int* size, int pos);
 
+// Linear Search
+void linear_search(int* array, int size, int num);
+
 int main ()  {
     int n;
     printf("Enter the size for the array.\n");
@@ -85,6 +88,9 @@ int main ()  {
     printf("Deleting element at 3rd position\n");
     delete_at_pos(arr, &n, 3);
     display_array(arr, n);
+
+    printf("Finding 4 in the array\n");
+    linear_search(arr, n, 4);
 
     return 0;
 }
@@ -167,4 +173,14 @@ void delete_at_pos(int* array, int* size, int pos) {
    }
    array[*size - 1] = (int)NULL;
    (*size)--;
+}
+
+void linear_search(int* array, int size, int num) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == num) {
+            printf("Found %d at position %d\n", num, (i + 1));
+            return;
+        }
+    }
+    printf("Could not find %d in the array.\n");
 }
