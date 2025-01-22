@@ -70,6 +70,7 @@ int main ()  {
     insert_at_pos(arr, &n, 48, 4);
     display_array(arr, n);
 
+
     return 0;
 }
 
@@ -112,13 +113,19 @@ void insert_at_end(int* array, int* size, int num) {
 }
 
 void insert_at_pos(int* array, int* size, int num, int pos) {
+   if (pos < 0 || pos >= *size) {
+        printf("Enter a valid position.\n");
+        return;
+   }
    if (*size >= MAX_SIZE) {
         printf("Array is full.\n");
-   } else {
-        for (int i = *size - 1; i >= pos; i--) {
-            array[i + 1] = array[i];
-       }     
-        array[pos - 1] = num;
-       (*size)++;
+        return;
+   }
+    for (int i = *size; i >= pos; i--) {
+        array[i] = array[i - 1];
+    }     
+    array[pos - 1] = num;
+    (*size)++;
+}
    }
 }
