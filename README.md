@@ -9,7 +9,8 @@ Dhruv Anand (BT24CSH023)
 ## Contents
 
 - Lab Task 1 : Arrays & Sorting
-- Simple & exponential moving average
+- Lab Task 2 : Simple & exponential moving average
+- Lab Task 3 : Linked List
 
 ## How to Use
 
