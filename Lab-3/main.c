@@ -1,6 +1,6 @@
 // [x] 1. Write a program to create a linked list.
 // [x] 2. Traverse the linked list and print content of every struct Node.
-// [ ] 3. Create 2 linked lists having size 'n' & 'm' and add m respectively; derive 3rd list by concatenating these 2 lists.
+// [x] 3. Create 2 linked lists having size 'n' & 'm' and add m respectively; derive 3rd list by concatenating these 2 lists.
 // [x] 4. Insert a struct Node in the list at beginning, at end, at specific location.
 // [ ] 5. Delete a struct Node in the list at beginning, at end, at specific location.
 
@@ -13,6 +13,7 @@ struct Node {
 };
 
 /* FUNCTION DECLARATION */
+
 int Size(struct Node *p);
 void Display(struct Node *p);
 // void Concat(struct Node *a, struct Node *b);
@@ -30,6 +31,13 @@ int main() {
     for (int i = 1; i <= 10; i++)
         Insert(&head, i * 10, i);
 
+    Display(head);
+
+    printf("\n\n");
+
+    Delete(&head, 40);
+    Delete(&head, 90);
+    Delete(&head, 20);
     Display(head);
 
     printf("\n\n");
@@ -69,20 +77,6 @@ void Display(struct Node *p) {
 
 struct Node *Concat(struct Node *a, struct Node *b) {
     struct Node *c = NULL;
-
-    // while (a != NULL) {
-    //     int pos = 1;
-    //     Insert(&c, a->data, pos);
-    //     pos++;
-    //     a = a->next;
-    // }
-
-    // while (b != NULL) {
-    //     int pos = 1;
-    //     Insert(&c, b->data, pos);
-    //     pos++;
-    //     b = b->next;
-    // }
 
     while (a != NULL) {
         Append(&c, a->data);
@@ -144,4 +138,19 @@ void Insert(struct Node **head, int num, int pos) {
     temp->data = num;
     temp->next = p->next;
     p->next = temp;
+}
+
+void Delete(struct Node **head, int num) {
+    struct Node* p = (*head);
+
+    while (p->next != NULL) {
+        if (p->next->data == num) {
+            struct Node* q = p->next;
+            p->next = p->next->next;
+            return;
+        }
+        p = p->next;
+    }
+
+    printf("Given list does not have %d\n", num);
 }
