@@ -15,7 +15,8 @@ struct Node {
 /* FUNCTION DECLARATION */
 int Size(struct Node *p);
 void Display(struct Node *p);
-void Concat(struct Node *a, struct Node *b);
+// void Concat(struct Node *a, struct Node *b);
+struct Node *Concat(struct Node *a, struct Node *b);
 void Prepend(struct Node **head, int num);
 void Append(struct Node **head, int num);
 void Insert(struct Node **head, int num, int pos);
@@ -30,6 +31,22 @@ int main() {
         Insert(&head, i * 10, i);
 
     Display(head);
+
+    printf("\n\n");
+
+    struct Node *x = NULL;
+    for (int i = 1; i <= 4; i++)
+        Insert(&x, i * 4, i);
+    Display(x);
+    printf("\n");
+
+    struct Node *y = NULL;
+    for (int i = 1; i <= 3; i++)
+        Insert(&y, i * 7, i);
+    Display(y);
+    printf("\n");
+
+    Display(Concat(x, y));
 
     return 0;
 }
@@ -50,6 +67,36 @@ void Display(struct Node *p) {
     }
 }
 
+struct Node *Concat(struct Node *a, struct Node *b) {
+    struct Node *c = NULL;
+
+    // while (a != NULL) {
+    //     int pos = 1;
+    //     Insert(&c, a->data, pos);
+    //     pos++;
+    //     a = a->next;
+    // }
+
+    // while (b != NULL) {
+    //     int pos = 1;
+    //     Insert(&c, b->data, pos);
+    //     pos++;
+    //     b = b->next;
+    // }
+
+    while (a != NULL) {
+        Append(&c, a->data);
+        a = a->next;
+    }
+
+    while (b != NULL) {
+        Append(&c, b->data);
+        b = b->next;
+    }
+
+    return c;
+}
+
 void Prepend(struct Node **head, int num) {
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node));
     temp->data = num;
@@ -59,6 +106,14 @@ void Prepend(struct Node **head, int num) {
 
 void Append(struct Node **head, int num) {
     struct Node *p = (*head);
+
+    if (p == NULL) {
+        p = (struct Node *)malloc(sizeof(struct Node));
+        p->data = num;
+        p->next = NULL;
+        (*head) = p;
+        return;
+    }
 
     while (p->next != NULL)
         p = p->next;
@@ -79,9 +134,9 @@ void Insert(struct Node **head, int num, int pos) {
         return;
     }
 
-    pos -= 2; 
+    pos -= 2;
 
-    struct Node *p = (*head); 
+    struct Node *p = (*head);
     while (pos--)
         p = p->next;
 
