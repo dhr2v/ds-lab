@@ -2,7 +2,7 @@
 // [x] 2. Traverse the linked list and print content of every struct Node.
 // [x] 3. Create 2 linked lists having size 'n' & 'm' and add m respectively; derive 3rd list by concatenating these 2 lists.
 // [x] 4. Insert a struct Node in the list at beginning, at end, at specific location.
-// [ ] 5. Delete a struct Node in the list at beginning, at end, at specific location.
+// [x?] 5. Delete a struct Node in the list at beginning, at end, at specific location.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -141,11 +141,11 @@ void Insert(struct Node **head, int num, int pos) {
 }
 
 void Delete(struct Node **head, int num) {
-    struct Node* p = (*head);
+    struct Node *p = (*head);
 
     while (p->next != NULL) {
         if (p->next->data == num) {
-            struct Node* q = p->next;
+            struct Node *q = p->next;
             p->next = p->next->next;
             return;
         }
