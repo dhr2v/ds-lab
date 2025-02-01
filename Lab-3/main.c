@@ -30,7 +30,6 @@ int main() {
     printf("Creating Linked List...\n");
     for (int i = 1; i <= 10; i++)
         Insert(&head, i * 10, i);
-
     Display(head);
 
     printf("\n\n");
@@ -38,6 +37,10 @@ int main() {
     Delete(&head, 40);
     Delete(&head, 90);
     Delete(&head, 20);
+    Display(head);
+
+    printf("\n");
+    Append(&head, 120);
     Display(head);
 
     printf("\n\n");
@@ -102,10 +105,7 @@ void Append(struct Node **head, int num) {
     struct Node *p = (*head);
 
     if (p == NULL) {
-        p = (struct Node *)malloc(sizeof(struct Node));
-        p->data = num;
-        p->next = NULL;
-        (*head) = p;
+        Prepend(head, num);
         return;
     }
 
