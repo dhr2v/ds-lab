@@ -1,6 +1,6 @@
 // [x] Length of linked list.
-// [ ] Find 3rd node from end.
-// [ ] Swap 2 adjacent nodes.
+// [x] Find 3rd node from end.
+// [x] Swap 2 adjacent nodes.
 // [ ] Implement Bubble Sort.
 // [ ] Assume there are 2 sorted lists, create a third list 
 //            from those two such that it is sorted as well.
@@ -18,6 +18,7 @@ void Prepend(struct Node **head, int num);
 void Display(struct Node *head);
 
 struct Node* nthNodeFromEnd(struct Node* head, int pos);
+void SwapNodes(struct Node *p, struct Node *q);
 
 int main () {
     struct Node *head = NULL;
@@ -33,8 +34,10 @@ int main () {
     Display(head);
 
     printf("Size of Linked List = %d\n", Size(head));
-
-    printf("\n3rd Node from the end is %d", nthNodeFromEnd(head, 3)->data);
+    printf("\nAfter swapping 1st & 2nd Node\n");
+    SwapNodes(head, head->next);
+    Display(head);
+    // printf("\n3rd Node from the end is %d", nthNodeFromEnd(head, 3)->data);
 
     return 0;
 }
@@ -75,4 +78,10 @@ struct Node* nthNodeFromEnd(struct Node* head, int pos) {
         c++;
     }
     return p;
+}
+
+void SwapNodes(struct Node *p, struct Node *q) {
+    int temp = p->data;
+    p->data = q->data;
+    q->data = temp;
 }
