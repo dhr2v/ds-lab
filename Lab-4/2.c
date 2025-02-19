@@ -66,4 +66,13 @@ int Size(struct Node *head) {
 }
 
 struct Node* nthNodeFromEnd(struct Node* head, int pos) {
+    int c = 0;
+    int s = Size(head);
+
+    struct Node* p = head;
+    while (c < (s - pos) && p != NULL) {
+        p = p->next;
+        c++;
+    }
+    return p;
 }
