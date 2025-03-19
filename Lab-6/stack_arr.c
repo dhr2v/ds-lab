@@ -9,7 +9,7 @@ int stack[N];
 int top = -1;
 
 /* FUNCTION DECLARATIONS */
-void Push(int data);
+void Push(int num);
 void Pop();
 void Display();
 
@@ -31,9 +31,9 @@ void Display() {
     for (; i >= 0; i--) printf("| %2d |\n", stack[i]);
 }
 
-void Push(int data) {
+void Push(int num) {
     if (top == N - 1) { printf("Stack Overflow!\n"); return; }
-    stack[++top] = data;
+    stack[++top] = num;
 }
 
 void Pop() {
