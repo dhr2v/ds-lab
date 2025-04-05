@@ -13,3 +13,8 @@
 	i. Push
 	ii. Pop
 	iii. Print
+
+4. Convert infix expression to postfix expression using stack
+5. Evaluate postfix expression using stack.
+6. Write a function to check whether a given string is palindrome using stack.
+7. Write a function to check balanced parenthesis.
