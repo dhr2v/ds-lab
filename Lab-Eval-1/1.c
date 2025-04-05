@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 void display(int *arr, int size);
-void swap (int *a, int *b);
+void swap(int *a, int *b);
 
 int Partition(int *arr, int lb, int ub);
 void QuickSort(int *arr, int lb, int ub);
@@ -39,11 +39,12 @@ int main() {
 }
 
 void display(int *arr, int size) {
-    for (int i = 0; i < size; i++) printf("%d\t", arr[i]);
+    for (int i = 0; i < size; i++)
+        printf("%d\t", arr[i]);
     printf("\n");
 }
 
-void swap (int *a, int *b) {
+void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
@@ -55,9 +56,12 @@ int Partition(int *arr, int lb, int ub) {
     int end = ub;
 
     while (start < end) {
-        while (arr[start] <= pivot && start < ub) start++;
-        while (arr[end] > pivot && end > lb) end--;
-        if (start < end) swap(&arr[start], &arr[end]);
+        while (arr[start] <= pivot && start < ub)
+            start++;
+        while (arr[end] > pivot && end > lb)
+            end--;
+        if (start < end)
+            swap(&arr[start], &arr[end]);
     }
     swap(&arr[end], &arr[lb]);
     return end;
@@ -76,10 +80,13 @@ void Merge(int *arr, int l, int m, int r) {
     int n1 = m - l + 1;
     int n2 = r - m;
 
-    int L[n1], R[n2];
+    int *L = (int *)malloc(n1 * sizeof(int));
+    int *R = (int *)malloc(n2 * sizeof(int));
 
-    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
-    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
 
     i = j = 0;
     k = l;
@@ -87,13 +94,17 @@ void Merge(int *arr, int l, int m, int r) {
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             arr[k++] = L[i++];
-        }
-        else {
+        } else {
             arr[k++] = R[j++];
         }
     }
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
+    while (i < n1)
+        arr[k++] = L[i++];
+    while (j < n2)
+        arr[k++] = R[j++];
+
+    free(L);
+    free(R);
 }
 
 void MergeSort(int *arr, int l, int r) {
