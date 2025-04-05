@@ -4,6 +4,7 @@
 // Question 1: Quick Sort & Merge Sort
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void display(int *arr, int size);
 void swap(int *a, int *b);
