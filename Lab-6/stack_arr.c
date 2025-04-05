@@ -14,12 +14,15 @@ void Pop();
 void Display();
 
 int main() {
-    for (int i = 1; i <= 5; i++) Push(2 * i);
+    for (int i = 1; i <= 5; i++)
+        Push(2 * i);
 
     Display();
 
-    for (int i = 1; i <= 5; i++) if (i % 2 == 0) Pop();
-    
+    for (int i = 1; i <= 5; i++)
+        if (i % 2 == 0)
+            Pop();
+
     Display();
 
     return 0;
@@ -27,18 +30,31 @@ int main() {
 
 /* FUNCTION DEFINITIONS */
 void Display() {
-    int i = top;
-    for (; i >= 0; i--) printf("| %2d |\n", stack[i]);
+    if (top == -1) {
+        printf("Stack is empty!\n");
+        return;
+    }
+
+    printf("------\n");
+    for (int i = top; i >= 0; i--) {
+        printf("| %2d |\n", stack[i]);
+    }
+    printf("------\n");
 }
 
 void Push(int num) {
-    if (top == N - 1) { printf("Stack Overflow!\n"); return; }
+    if (top == N - 1) {
+        printf("Stack Overflow!\n");
+        return;
+    }
     stack[++top] = num;
 }
 
 void Pop() {
-    if (top == -1) { printf("Stack Underflow!\n"); return; }
+    if (top == -1) {
+        printf("Stack Underflow!\n");
+        return;
+    }
     printf("Popped: %d\n", stack[top]);
     top--;
 }
-
