@@ -1,8 +1,8 @@
 // [x] Length of linked list.
 // [x] Find 3rd node from end.
 // [x] Swap 2 adjacent nodes.
-// [ ] Implement Bubble Sort.
-// [ ] Assume there are 2 sorted lists, create a third list 
+// [x] Implement Bubble Sort.
+// [x] Assume there are 2 sorted lists, create a third list
 //            from those two such that it is sorted as well.
 
 #include <stdio.h>
@@ -18,21 +18,14 @@ void Append(struct Node **head, int num);
 void Prepend(struct Node **head, int num);
 void Display(struct Node *head);
 
-struct Node* nthNodeFromEnd(struct Node* head, int pos);
+struct Node *nthNodeFromEnd(struct Node *head, int pos);
 void SwapNodes(struct Node *p, struct Node *q);
-void BubbleSort(struct Node** head);
-void Merge(struct Node* a, struct Node* b, struct Node** c);
+void BubbleSort(struct Node **head);
+void Merge(struct Node *a, struct Node *b, struct Node **c);
 
-int main () {
+int main() {
     struct Node *head = NULL;
 
-    // Prepend(&head, 35);
-    // Prepend(&head, 1);
-    // Prepend(&head, 50);
-    // Prepend(&head, 5);
-    // Prepend(&head, 30);
-    // Prepend(&head, 20);
-    // Prepend(&head, 10);
     Append(&head, 10);
     Append(&head, 20);
     Append(&head, 30);
@@ -42,12 +35,13 @@ int main () {
     Append(&head, 35);
 
     Display(head);
-
     printf("Size of Linked List = %d\n", Size(head));
+
     printf("\nAfter swapping 1st & 2nd Node\n");
     SwapNodes(head, head->next);
     Display(head);
-    // printf("\n3rd Node from the end is %d", nthNodeFromEnd(head, 3)->data);
+
+    printf("3rd Node from the end is %d\n", nthNodeFromEnd(head, 3)->data);
 
     printf("Unsorted Linked List\n");
     Display(head);
@@ -58,9 +52,9 @@ int main () {
     printf("Sorted Linked List\n");
     Display(head);
 
-    struct Node* A = NULL;
-    struct Node* B = NULL;
-    struct Node* C = NULL;
+    struct Node *A = NULL;
+    struct Node *B = NULL;
+    struct Node *C = NULL;
 
     Append(&A, 10);
     Append(&A, 20);
@@ -78,7 +72,7 @@ int main () {
     Display(B);
 
     Merge(A, B, &C);
-    
+
     printf("\nList 3:\n");
     Display(C);
 
@@ -94,15 +88,12 @@ void Prepend(struct Node **head, int num) {
 
 void Append(struct Node **head, int num) {
     struct Node *p = (*head);
-
     if (p == NULL) {
         Prepend(head, num);
         return;
     }
-
     while (p->next != NULL)
         p = p->next;
-
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node));
     temp->data = num;
     temp->next = NULL;
@@ -128,14 +119,13 @@ int Size(struct Node *head) {
     return c;
 }
 
-struct Node* nthNodeFromEnd(struct Node* head, int pos) {
-    int c = 0;
+struct Node *nthNodeFromEnd(struct Node *head, int pos) {
     int s = Size(head);
-
-    struct Node* p = head;
-    while (c < (s - pos) && p != NULL) {
+    struct Node *p = head;
+    for (int i = 0; i < s - pos; i++) {
+        if (p == NULL)
+            return NULL;
         p = p->next;
-        c++;
     }
     return p;
 }
@@ -146,16 +136,42 @@ void SwapNodes(struct Node *p, struct Node *q) {
     q->data = temp;
 }
 
-void Merge(struct Node* a, struct Node* b, struct Node** c) {
-    struct Node* p = a;
-    struct Node* q = b;
-    while (p != NULL && q != NULL) {
-        if (p->data < q->data) {
-            Append(c, p->data);
-            p = p->next;
+void BubbleSort(struct Node **head) {
+    if (*head == NULL)
+        return;
+    int swapped;
+    struct Node *ptr1;
+    struct Node *lptr = NULL;
+    do {
+        swapped = 0;
+        ptr1 = *head;
+        while (ptr1->next != lptr) {
+            if (ptr1->data > ptr1->next->data) {
+                SwapNodes(ptr1, ptr1->next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    } while (swapped);
+}
+
+void Merge(struct Node *a, struct Node *b, struct Node **c) {
+    while (a != NULL && b != NULL) {
+        if (a->data < b->data) {
+            Append(c, a->data);
+            a = a->next;
         } else {
-            Append(c, q->data);
-            q = q->next;
+            Append(c, b->data);
+            b = b->next;
         }
     }
-}   
+    while (a != NULL) {
+        Append(c, a->data);
+        a = a->next;
+    }
+    while (b != NULL) {
+        Append(c, b->data);
+        b = b->next;
+    }
+}
