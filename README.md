@@ -14,6 +14,7 @@ Dhruv Anand (BT24CSH023)
 - Lab Task 4 : Questions related to linked list
 - Lab Task 5 : Circular & Doubly Linked List
 - Lab Task 6 : Implementation of Stack (using Array, Singly & Doubly Linked List)
+- Lab Task 7 : Implementation of Queue (using Array, Singly Linked List & Circular queue using array)
 
 ## How to Use
 
